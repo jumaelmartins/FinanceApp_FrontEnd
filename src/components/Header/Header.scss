@@ -1,0 +1,17 @@
+@use "../../styles/partials/variables";
+
+.header--login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "div logo";
+  background: map-get(variables.$primary-colors, purple-10);
+  .logo {
+    grid-area: logo;
+    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3rem;
+    width: 100%;
+    background: white;
+  }
+}
