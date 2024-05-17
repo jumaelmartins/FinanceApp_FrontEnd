@@ -1,10 +1,10 @@
-import SignUp from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
 import "./styles/main.scss";
 
 function App() {
   return (
     <>
-      <SignUp />
+      <SignIn />
     </>
   );
 }

@@ -12,7 +12,7 @@ export const Form = ({login}) => {
         <Input placeholder={"email"} id={"email"} icon={<Email />} />
         <Input placeholder={"password"} id={"password"} icon={<Lock />} />
       </fieldset>
-      <Button modifier={"--primary"} text={"Sign Up"} />
+      <Button modifier={"btn--primary btn--small"} text={"Sign In"} />
     </form>
   );
 };

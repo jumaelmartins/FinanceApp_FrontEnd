@@ -3,40 +3,47 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  .grid-column {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    gap: 2rem;
-}
+  height: 100vh;
+  max-width: 100%;
 
-.grid-column--one {
+  .grid-column--one {
     background: map-get(variables.$primary-colors, purple-10);
-    padding: 0 10rem;
     align-items: center;
     text-align: center;
   }
+}
 
-  .grid-column--two {
-    padding: 0 4rem;
-  }
+.grid-column--two > * {
+    margin: 0 4rem;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 3.4rem;
   color: map-get(variables.$primary-colors, purple-1);
+  max-width: 100%;
 }
 
 .title--secundary {
+  font-size: 3.1rem;
   color: map-get(variables.$primary-colors, purple-13);
+  width: 26rem;
+  max-width: 100%;
 }
 
 .text {
   font-size: 1.5rem;
   color: map-get(variables.$primary-colors, purple-1);
+  width: 30rem;
+  margin: 2rem 0 4rem 0;
+  max-width: 100%;
 }
 
-.img {
+.img-container {
+  img {
+    max-width: 100%;
+    height: 100%;
+  }
   width: 36rem;
+  height: 36rem;
   max-width: 100%;
 }

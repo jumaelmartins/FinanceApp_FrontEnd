@@ -4,9 +4,10 @@ import UserPicture from "../Icons/UserPicture";
 
 const Header = ({ Modifier, isLogged }) => {
   return (
-    <header className={"grid-container " + Modifier}>
+    <header className={"header " + Modifier}>
       <div className="logo">
-        <Logo />
+        {/* <Logo props={"svg-logo"} /> */}
+        <img src="/src/assets/icons/logo.svg" alt="logo" srcset="" />
       </div>
       {isLogged && (
         <div className={"user-info"}>

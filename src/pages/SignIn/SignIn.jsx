@@ -1,9 +1,9 @@
 import Button from "../../components/Button/Button";
 import { Form } from "../../components/Form/Form";
 import Header from "../../components/Header/Header";
-import "./SignUp.scss";
+import "./SignIn.scss";
 
-const SignUp = () => {
+const SignIn = () => {
   return (
     <>
       <Header Modifier="header--login" isLogged={false} />
@@ -14,8 +14,10 @@ const SignUp = () => {
             the best solution for you to take control of your finances, all in
             one place, create your account now.
           </p>
-          <Button modifier={"--primary"} text={"Sign In"} />
-          <img className="img" src="src/assets/imgs/main.svg" />
+          <Button modifier={"btn--primary"} text={"Sign Up"} />
+          <div className="img-container">
+            <img src="src/assets/imgs/main.svg" />
+          </div>
         </section>
         <section className="grid-column grid-column--two">
           <h2 className="title title--secundary">Welcome Back My Dear!</h2>
@@ -26,4 +28,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

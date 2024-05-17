@@ -2,7 +2,7 @@ import './Button.scss'
 
 const Button = ({modifier, text}) => {
     return (
-        <button className={"btn"+modifier}>
+        <button className={"btn "+modifier}>
             {text}
         </button>
     )

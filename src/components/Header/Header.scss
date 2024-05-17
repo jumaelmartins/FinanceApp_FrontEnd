@@ -1,14 +1,15 @@
 @use "../../styles/partials/variables";
 
-
 .header {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .header--login {
   grid-template-areas: "div logo";
   background: map-get(variables.$primary-colors, purple-10);
+
+
   .logo {
     grid-area: logo;
     justify-self: end;
@@ -16,6 +17,11 @@
     justify-content: flex-end;
     padding-right: 3rem;
     width: 100%;
-    background: white;
+    height: 100%;
+    background: #fff;
+    > img {
+      width: 128px;
+      max-width: 100%;
+    }
   }
 }
