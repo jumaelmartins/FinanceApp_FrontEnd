@@ -1,0 +1,15 @@
+@use "../../styles/partials/variables";
+
+.btn--primary {
+  padding: 1rem 2rem;
+  border-radius: 20rem;
+  border: .32rem solid map-get(variables.$primary-colors, purple-1);
+  color: map-get(variables.$primary-colors, purple-1);
+  font-weight:500;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  background-color: map-get(variables.$primary-colors, purple-10);
+  &:hover{
+    cursor: pointer;
+  }
+}

@@ -1,29 +1,42 @@
 @use "../../styles/partials/variables";
 
-.sign-up-container {
+.grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  &__column-1 {
-    background: map-get(variables.$primary-colors, purple-10);
+  .grid-column {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0 6rem;
+    max-width: 100%;
     gap: 2rem;
+}
+
+.grid-column--one {
+    background: map-get(variables.$primary-colors, purple-10);
+    padding: 0 10rem;
+    align-items: center;
     text-align: center;
   }
 
-  &__column-1__title {
-    font-size: 3rem;
-    color: map-get(variables.$primary-colors, purple-1);
+  .grid-column--two {
+    padding: 0 4rem;
   }
-  &__column-1__text {
-    font-size: 1.5rem;
-    color: map-get(variables.$primary-colors, purple-1);
-  }
+}
 
-  &__column-1__img {
-    max-width: 36rem;
-  }
+.title {
+  font-size: 3rem;
+  color: map-get(variables.$primary-colors, purple-1);
+}
+
+.title--secundary {
+  color: map-get(variables.$primary-colors, purple-13);
+}
+
+.text {
+  font-size: 1.5rem;
+  color: map-get(variables.$primary-colors, purple-1);
+}
+
+.img {
+  width: 36rem;
+  max-width: 100%;
 }

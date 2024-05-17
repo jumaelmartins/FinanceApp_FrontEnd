@@ -4,7 +4,7 @@ import UserPicture from "../Icons/UserPicture";
 
 const Header = ({ Modifier, isLogged }) => {
   return (
-    <header className={"header" + Modifier}>
+    <header className={"grid-container " + Modifier}>
       <div className="logo">
         <Logo />
       </div>
