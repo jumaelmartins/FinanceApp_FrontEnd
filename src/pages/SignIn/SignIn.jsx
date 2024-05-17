@@ -6,7 +6,7 @@ import "./SignIn.scss";
 const SignIn = () => {
   return (
     <>
-      <Header Modifier="header--login" isLogged={false} />
+      <Header Modifier="header--sign-in" isLogged={false} />
       <article className="grid-container">
         <section className="grid-column grid-column--one">
           <h1 className="title">Save your money!</h1>

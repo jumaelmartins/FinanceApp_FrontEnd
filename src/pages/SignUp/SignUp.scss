@@ -1,0 +1,17 @@
+@use "../../styles/partials/variables";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  max-width: 100%;
+
+  .grid-column--one {
+    background: map-get(variables.$primary-colors, purple-10);
+    align-items: center;
+    text-align: center;
+    > button {
+        margin: 4rem 0 2rem 0;
+    }
+  }
+}
