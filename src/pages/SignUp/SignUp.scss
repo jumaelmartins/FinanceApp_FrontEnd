@@ -1,35 +1,56 @@
 @use "../../styles/partials/variables";
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  max-width: 100%;
+.container {
+  .sign-up-column-one {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
 
-  .grid-column--one {
-    background: map-get(variables.$primary-colors, purple-10);
-    align-items: center;
-    text-align: center;
-    > button,
-    a {
-      margin: 4rem 0 2rem 0;
+    padding-top: 6rem;
+    > .title--secundary {
+      @media screen and (max-width: 768px) {
+        margin: 2rem 1rem;
+      }
+      margin: 4rem;
+    }
+
+    > .form > button {
+      margin: 4rem 0;
     }
   }
 }
 
-.img-container {
-  position: relative;
-}
-
-.img-container::before {
-  content: "";
-  position: absolute;
-  height: 2rem;
-  width: 100%;
-  background: map-get(variables.$primary-colors, purple-11);
-  border-radius: 100%;
-  left: 0;
-  bottom: 0;
-  transition: all 1s;
-  animation: shadowGrow infinite ease-in-out 5s alternate;
+.sign-up-column-two {
+  background: map-get(variables.$primary-colors, purple-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    order: -1;
+  }
+  > a {
+    @media screen and (max-width: 768px) {
+      margin: 2rem;
+    }
+    margin: 4rem;
+  }
+  > .header {
+    align-self: self-end;
+    .logo {
+      padding-right: 1rem;
+    }
+    > .logo > svg {
+      @media screen and (max-width: 768px) {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  }
+  .title {
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+      text-align: center;
+    }
+    margin: 0 4rem;
+  }
 }

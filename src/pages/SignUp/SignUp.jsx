@@ -6,20 +6,24 @@ import "./SignUp.scss";
 const SignUp = () => {
   return (
     <>
-      <Header Modifier="header--sign-up" isLogged={false} />
-      <article className="grid-container">
-        <section className="grid-column grid-column--two">
+      <div className="container">
+        <section className="sign-up-column-one">
           <h2 className="title title--secundary">Create your account</h2>
           <Form login={false} />
         </section>
-        <section className="grid-column grid-column--one">
+        <section className="sign-up-column-two">
+          <Header Modifier="header--sign-up" isLogged={false} />
           <h1 className="title">Already have an account?</h1>
-          <Button to={"/"} modifier={"btn--primary margin shining"} text={"Sign In"} />
+          <Button
+            to={"/signin"}
+            modifier={"btn--primary margin shining"}
+            text={"Sign In"}
+          />
           <div className="img-container">
             <img className="bounce" src="src/assets/imgs/signup.svg" />
           </div>
         </section>
-      </article>
+      </div>
     </>
   );
 };

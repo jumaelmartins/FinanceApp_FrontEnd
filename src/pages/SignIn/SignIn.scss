@@ -1,30 +1,52 @@
 @use "../../styles/partials/variables";
 
-.grid-container {
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
-  max-width: 100%;
 
-  .grid-column--one {
+  .sign-in-column-one {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     background: map-get(variables.$primary-colors, purple-10);
     align-items: center;
     text-align: center;
-    transition: all 3s;
+    padding-top: 6rem;
+    > a {
+      margin: 4rem 0 0 0;
+    }
   }
 }
 
-.grid-column--two > * {
-  margin: 0 4rem;
+.sign-in-column-two {
+  .title {
+    @media screen and (max-width: 768px) {
+      margin-left: 1rem;
+    }
+    margin: 0 4rem;
+  }
+  > form {
+    margin: 4rem 0;
+    > button {
+      margin-top: 4rem;
+    }
+  }
 }
 
 .title {
+  @media screen and (max-width: 768px) {
+    font-size: 2.5rem;
+  }
   font-size: 3.4rem;
   color: map-get(variables.$primary-colors, purple-1);
   max-width: 100%;
 }
 
 .title--secundary {
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
   font-size: 3.1rem;
   color: map-get(variables.$primary-colors, purple-13);
   width: 26rem;
@@ -32,6 +54,11 @@
 }
 
 .text {
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
   font-size: 1.5rem;
   color: map-get(variables.$primary-colors, purple-1);
   width: 30rem;
@@ -40,11 +67,49 @@
 }
 
 .img-container {
+  position: relative;
+  transition: all 2s;
   img {
     max-width: 100%;
     height: 100%;
   }
-  width: 36rem;
-  height: 36rem;
+  width: 32rem;
+  height: 32rem;
   max-width: 100%;
+  max-height: 100%;
+}
+
+.img-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  animation: shadowGrow infinite ease-in-out alternate 5s;
+  left: 0;
+  bottom: 0;
+  height: 3.5rem;
+  width: 100%;
+  background: map-get(variables.$primary-colors, purple-11);
+  border-radius: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    .sign-in-column-one {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: map-get(variables.$primary-colors, purple-10);
+      align-items: center;
+      text-align: center;
+      padding-top: 2rem;
+      > a {
+        margin: 4rem 0;
+      }
+    }
+  }
+  .img-container {
+    display: none;
+  }
 }

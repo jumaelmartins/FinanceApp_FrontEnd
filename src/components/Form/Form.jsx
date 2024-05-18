@@ -17,13 +17,14 @@ export const Form = ({ login }) => {
       </fieldset>
       {!login && (
         <Button
-          to={"/signup"}
+          isFormBtn={true}
           modifier={"btn--primary btn--small btn--animation-one"}
           text={"Sign Up"}
         />
       )}
       {login && (
-        <Button to={"/"}
+        <Button
+          isFormBtn={true}
           modifier={"btn--primary btn--small btn--animation-one"}
           text={"Sign In"}
         />

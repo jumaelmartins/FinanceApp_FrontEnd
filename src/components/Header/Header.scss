@@ -7,8 +7,10 @@
 
 .header--sign-in {
   grid-template-areas: "div logo";
-  background: map-get(variables.$primary-colors, purple-10);
   .logo {
+    @media screen and (max-width: 768px) {
+      padding-right: 1rem;
+    }
     grid-area: logo;
     justify-self: end;
     display: flex;
@@ -17,29 +19,30 @@
     width: 100%;
     height: 100%;
     background: #fff;
-    > img {
+    > svg {
+      @media screen and (max-width: 768px) {
+        width: 64px;
+        height: 64px;
+      }
       width: 128px;
       max-width: 100%;
     }
   }
 }
 
-
 .header--sign-up {
-   grid-template-areas: "div logo";
-   background: #fff;
-   .logo {
-      grid-area: logo;
-      justify-self: end;
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 3rem;
-      width: 100%;
-      height: 100%;
-      background: map-get(variables.$primary-colors, purple-10);
-     > img {
-       width: 128px;
-       max-width: 100%;
-     }
-   }
- }
+  grid-template-areas: "div logo";
+  .logo {
+    grid-area: logo;
+    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3rem;
+    width: 100%;
+    height: 100%;
+    > img {
+      width: 128px;
+      max-width: 100%;
+    }
+  }
+}

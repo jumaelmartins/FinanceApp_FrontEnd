@@ -5,18 +5,23 @@
   border-radius: 5rem;
   transition: all 0.2s;
   position: relative;
+  font-size: 2.5rem;
+  cursor: pointer;
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+  }
 }
 
 .btn--primary {
+  @media screen and (max-width: 768px) {
+    border-width: 0.25rem;
+  }
   border: 0.32rem solid map-get(variables.$primary-colors, purple-1);
   color: map-get(variables.$primary-colors, purple-1);
   font-weight: 500;
-  font-size: 2.5rem;
   text-transform: uppercase;
   background-color: map-get(variables.$primary-colors, purple-10);
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .btn--small {
@@ -65,33 +70,7 @@
     0 0 15px map-get(variables.$primary-colors, purple-6);
 }
 
-@keyframes shining {
-  from {
-    box-shadow: 0 0 5px map-get(variables.$primary-colors, purple-8),
-      0 0 15px map-get(variables.$primary-colors, purple-6),
-      0 0 30px map-get(variables.$primary-colors, purple-3),
-      0 0 35px map-get(variables.$primary-colors, purple-1);
-  }
-
-  to {
-    box-shadow: 0 0 5px map-get(variables.$primary-colors, purple-1),
-      0 0 15px map-get(variables.$primary-colors, purple-3),
-      0 0 30px map-get(variables.$primary-colors, purple-6),
-      0 0 35px map-get(variables.$primary-colors, purple-8);
-  }
-}
-
 .bounce {
   transition: all 1s;
   animation: bounce 5s ease-in-out infinite alternate;
-}
-
-
-@keyframes bounce {
-  from {
-    transform: translateY(-2rem);
-  }
-  to {
-    transform: translateY(2rem);
-  }
 }

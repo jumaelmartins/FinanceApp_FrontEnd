@@ -1,13 +1,13 @@
+import React from "react";
 import "./Header.scss";
-import Logo from "../Icons/Logo";
 import UserPicture from "../Icons/UserPicture";
+import Logo from "../Icons/Logo";
 
 const Header = ({ Modifier, isLogged }) => {
   return (
     <header className={"header " + Modifier}>
-      <div className="logo deslizar">
-        {/* <Logo props={"svg-logo"} /> */}
-        <img src="/src/assets/icons/logo.svg" alt="logo" srcset="" />
+      <div className="logo">
+        <Logo />
       </div>
       {isLogged && (
         <div className={"user-info"}>
