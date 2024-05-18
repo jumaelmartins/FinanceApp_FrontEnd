@@ -16,10 +16,17 @@ export const Form = ({ login }) => {
         <Input placeholder={"password"} id={"password"} icon={<Lock />} />
       </fieldset>
       {!login && (
-        <Button modifier={"btn--primary btn--small"} text={"Sign Up"} />
+        <Button
+          to={"/signup"}
+          modifier={"btn--primary btn--small btn--animation-one"}
+          text={"Sign Up"}
+        />
       )}
       {login && (
-        <Button modifier={"btn--primary btn--small"} text={"Sign In"} />
+        <Button to={"/"}
+          modifier={"btn--primary btn--small btn--animation-one"}
+          text={"Sign In"}
+        />
       )}
     </form>
   );

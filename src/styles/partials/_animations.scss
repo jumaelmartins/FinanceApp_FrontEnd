@@ -1,0 +1,42 @@
+@use "./variables";
+
+@keyframes shining {
+  from {
+    box-shadow: 0 0 5px map-get(variables.$primary-colors, purple-8),
+      0 0 15px map-get(variables.$primary-colors, purple-6),
+      0 0 30px map-get(variables.$primary-colors, purple-3),
+      0 0 35px map-get(variables.$primary-colors, purple-1);
+  }
+
+  to {
+    box-shadow: 0 0 5px map-get(variables.$primary-colors, purple-1),
+      0 0 15px map-get(variables.$primary-colors, purple-3),
+      0 0 30px map-get(variables.$primary-colors, purple-6),
+      0 0 35px map-get(variables.$primary-colors, purple-8);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(-2rem);
+  }
+  to {
+    transform: translateY(2rem);
+  }
+}
+
+@keyframes shadowGrow {
+  from {
+    box-shadow: 0 0 0.5rem map-get(variables.$primary-colors, purple-10),
+      0 0 1rem map-get(variables.$primary-colors, purple-12);
+    width: 90%;
+    left: 2rem;
+  }
+
+  to {
+    height: 1rem;
+    width: 100%;
+    box-shadow: 0 0 1rem map-get(variables.$primary-colors, purple-12),
+      0 0 0.5rem map-get(variables.$primary-colors, purple-10);
+  }
+}

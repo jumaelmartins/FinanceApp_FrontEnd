@@ -14,9 +14,9 @@ const SignUp = () => {
         </section>
         <section className="grid-column grid-column--one">
           <h1 className="title">Already have an account?</h1>
-          <Button modifier={"btn--primary"} text={"Sign In"} />
+          <Button to={"/"} modifier={"btn--primary margin shining"} text={"Sign In"} />
           <div className="img-container">
-            <img src="src/assets/imgs/signup.svg" />
+            <img className="bounce" src="src/assets/imgs/signup.svg" />
           </div>
         </section>
       </article>

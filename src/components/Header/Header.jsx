@@ -5,7 +5,7 @@ import UserPicture from "../Icons/UserPicture";
 const Header = ({ Modifier, isLogged }) => {
   return (
     <header className={"header " + Modifier}>
-      <div className="logo">
+      <div className="logo deslizar">
         {/* <Logo props={"svg-logo"} /> */}
         <img src="/src/assets/icons/logo.svg" alt="logo" srcset="" />
       </div>

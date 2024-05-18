@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom'
 import './Button.scss'
 
-const Button = ({modifier, text}) => {
+const Button = ({modifier, text, to}) => {
     return (
-        <button className={"btn "+modifier}>
+        <Link to={to} className={"btn "+modifier}>
             {text}
-        </button>
+        </Link>
     )
 }
 
