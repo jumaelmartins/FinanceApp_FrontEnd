@@ -1,0 +1,129 @@
+@use "../../styles/partials/variables";
+
+.card-wrapper {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 2rem;
+  padding: 2rem;
+  width: 100%;
+  height: 20rem;
+  .card-first-column {
+    display: flex;
+    flex-direction: column;
+    // background: #eefeff;
+    width: 50%;
+    gap: 1rem;
+    position: relative;
+  }
+  .card-first-column::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0.8rem;
+    border-radius: 2rem;
+    background: map-get(variables.$secundary-colors, gray-3);
+    right: -0.8rem;
+  }
+  .card-first-column > .card-amount {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 0.3rem;
+    color: map-get(variables.$primary-colors, purple-5);
+  }
+  .card-first-column > .card-label {
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12rem;
+    color: map-get(variables.$primary-colors, purple-13);
+  }
+
+  .card-second-column {
+    display: flex;
+    flex-direction: column;
+    // background: #eefeff;
+    width: 50%;
+    padding-left: 2rem;
+    gap: 1rem;
+    > * p {
+      font-size: 1.2rem;
+      color: map-get(variables.$primary-colors, purple-13);
+      font-weight: 500;
+      letter-spacing: 0.12rem;
+    }
+  }
+}
+
+.delt {
+  position: relative;
+}
+.delt.delt-expense-positive::after {
+  position: absolute;
+  content: "";
+  bottom: 0.3rem;
+  margin-left: 0.4rem;
+  width: 0;
+  height: 0;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 1rem solid red;
+}
+
+.delt.delt-expense-negative::after {
+  position: absolute;
+  content: "";
+  bottom: 0.3rem;
+  margin-left: 0.4rem;
+  width: 0;
+  height: 0;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-top: 1rem solid greenyellow;
+}
+
+.delt.delt-income-positive::after {
+  position: absolute;
+  content: "";
+  bottom: 0.3rem;
+  margin-left: 0.4rem;
+  width: 0;
+  height: 0;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 1rem solid greenyellow;
+}
+
+.delt.delt-income-negative::after {
+  position: absolute;
+  content: "";
+  bottom: 0.3rem;
+  margin-left: 0.4rem;
+  width: 0;
+  height: 0;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-top: 1rem solid red;
+}
+
+.delt.delt-income-equal::after,
+.delt.delt-expense-equal::after {
+  position: absolute;
+  content: "";
+  bottom: 0.6rem;
+  margin-left: 0.4rem;
+  width: 1rem;
+  height: 0.2rem;
+  background: cyan;
+}
+.chart-container--column {
+  width: 100%;
+  max-width: 10rem; /* ajuste conforme necessário */
+  height: auto;
+  margin: 0 auto;
+}
+
+// .chart {
+//   display: flex;
+//   width: 100%;
+//   height: auto;
+// }

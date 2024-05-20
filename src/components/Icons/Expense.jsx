@@ -1,4 +1,4 @@
-const Lock = () => {
+const Expense = () => {
   return (
     <>
       <svg
@@ -17,4 +17,4 @@ const Lock = () => {
   );
 };
 
-export default Lock;
+export default Expense;
