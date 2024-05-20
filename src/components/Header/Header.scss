@@ -46,3 +46,19 @@
     }
   }
 }
+
+.header--dashboard {
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8rem;
+  z-index: 2;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
