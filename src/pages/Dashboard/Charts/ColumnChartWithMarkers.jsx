@@ -1,10 +1,30 @@
 import React, { useRef, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-const ColumnChart = ({ title, planned, real, cat, classContainer }) => {
+const ColumnChartWithMarkers = ({ title, planned, real, cat }) => {
   const [chartWidth, setChartWidth] = useState(0);
   const [chartHeight, setChartHeight] = useState(0);
   const chartRef = useRef(null);
+
+  const obj = [
+    {
+      name: "Real",
+      data: [
+        {
+          x: "2011",
+          y: 1292,
+          goals: [
+            {
+              name: "Planned",
+              value: 1400,
+              strokeHeight: 5,
+              strokeColor: "#775DD0",
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,7 +47,7 @@ const ColumnChart = ({ title, planned, real, cat, classContainer }) => {
 
   const options = {
     chart: {
-      type: "line",
+      type: "bar",
     },
     // title: {
     //   text: 'Comparativo Mensal: Real vs. Planejado',
@@ -74,28 +94,42 @@ const ColumnChart = ({ title, planned, real, cat, classContainer }) => {
         },
       },
     },
+
     colors: ["#581D7C", "#00E396"], // Real (Azul) e Planejado (Verde)
   };
 
   const series = [
     {
       name: "Real",
-      type: "column",
-      data: real.map((real) => real),
-    },
-    {
-      name: "Planejado",
-      type: "line",
-      data: planned.map((plan) => plan),
+      data: [
+        {
+          x: "2011",
+          y: 1292,
+          goals: [
+            {
+              name: "Planned",
+              value: 1400,
+              strokeHeight: 5,
+              strokeColor: "#775DD0",
+            },
+          ],
+        },
+      ],
     },
   ];
 
   return (
-    <div className={classContainer} ref={chartRef}>
+    <div className="chart-container--column-one" ref={chartRef}>
       <h2>{title}</h2>
-      <Chart height={"100%"} options={options} series={series} type="line" />
+      <Chart
+        options={options}
+        series={series}
+        type="line"
+        height={"100%"}
+        max-width={"100%"}
+      />
     </div>
   );
 };
 
-export default ColumnChart;
+export default ColumnChartWithMarkers;

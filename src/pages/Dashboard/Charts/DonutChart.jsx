@@ -1,14 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-const DonutChart = () => {
+const DonutChart = ({ title, labels, values, colors }) => {
   const [chartWidth, setChartWidth] = useState(0);
+  const [chartHeight, setChartHeight] = useState(0);
   const chartRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
+      const width = window.innerWidth;
+      setChartWidth(width / 9.5);
       if (chartRef.current) {
-        setChartWidth(chartRef.current.offsetWidth);
+        setChartHeight(chartRef.current.offsetHeight);
       }
     };
 
@@ -26,45 +29,29 @@ const DonutChart = () => {
     chart: {
       type: "donut",
     },
-    labels: ["Produto A", "Produto B", "Produto C", "Produto D"],
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: "100%",
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
-      },
-    ],
+    labels: labels.map((label) => label),
+    
     legend: {
       position: "bottom",
     },
-    colors: ["#008FFB", "#00E396", "#FEB019", "#FF4560"],
-    title: {
-      text: "Vendas por Produto",
-      align: "center",
-      style: {
-        fontSize: "20px",
-        fontWeight: "bold",
-        color: "#263238",
-      },
-    },
+    colors: colors.map((color) => color),
+    // title: {
+    //   text: title,
+    //   align: "center",
+    //   style: {
+    //     fontSize: "20px",
+    //     fontWeight: "bold",
+    //     color: "#26003D",
+    //   },
+    // },
   };
 
-  const series = [44, 55, 41, 17];
+  const series = values.map((serie) => serie);
 
   return (
-    <div className="chart-container" ref={chartRef}>
-      <Chart
-        options={options}
-        series={series}
-        type="donut"
-        width={chartWidth}
-      />
+    <div className="donut-chart-container" ref={chartRef}>
+      <h2>{title}</h2>
+      <Chart height={"100%"} options={options} series={series} type="donut" />
     </div>
   );
 };

@@ -18,8 +18,7 @@ const Dashboard = () => {
       <Header Modifier={"header--dashboard"} isLogged={true} />
       <Navbar />
       <div className="dashboard-wrapper">
-        <section className="dashboard-wrapper-first-row">
-          <div className="first-column">
+        <div className="dashboard-first-row">
             <ul className="card-container">
               <Card
                 icon={<Expense />}
@@ -41,26 +40,47 @@ const Dashboard = () => {
               />
               <Card icon={<CashFlow />} label={"CashFlow"} amount={"10k"} />
             </ul>
-            {/* <div className="column-chart-one">
-              <ColumnChart />
-            </div> */}
+            <div className="donut-wrapper">
+              <DonutChart
+                title={"Despesas Por Categoria"}
+                values={[700, 500]}
+                labels={["Despesas Fixas", "Despesas Variaveis"]}
+                colors={["#BC72E9", "#581D7C"]}
+              />
+              <DonutChart
+                title={"Despesas Por Metodo de Pagamento"}
+                values={[300, 900]}
+                labels={["Pix", "Cartão"]}
+                colors={["#BC72E9", "#581D7C"]}
+              />
+            </div>
+            <div className="column-chart-wrapper--first">
+              <ColumnChart
+              classContainer={"chart-container--column-one"}
+                cat={["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}
+                planned={[50, 100, 80, 50, 60, 100, 30, 91, 80, 34, 91, 31]}
+                real={[50, 93, 100, 80, 70, 90, 80, 91, 86, 94, 100, 20]}
+                title={"Despesas mês a mês"}
+              />
+            </div>
           </div>
-          <div className="second-column">
-            <DonutChart />
-            <DonutChart />
+          <div className="dashboard-second-row">
+            <div className="bar-chart-wrapper">
+              <BarChart />
+              <BarChart />
+            </div>
+            <div className="column-chart-wrapper--second">
+              <ColumnChart
+              classContainer={"chart-container--column-two"}
+                cat={["Cat1", "Cat2", "Cat3", "Cat4", "Cat5", "Cat6"]}
+                planned={[50, 100, 30, 80, 91, 31]}
+                real={[50, 93, 100, 80, 91, 94]}
+                title={"Despesas Por Categoria"}
+              />
+              <LineChart />
+            </div>
           </div>
-        </section>
-        {/* <section className="dashboard-row-two">
-          <div className="primera-coluna">
-            <BarChart />
-            <BarChart />
-          </div>
-          <div className="segunda-coluna">
-            <ColumnChart />
-            <LineChart />
-          </div>
-        </section> */}
-      </div>
+        </div>
     </div>
   );
 };

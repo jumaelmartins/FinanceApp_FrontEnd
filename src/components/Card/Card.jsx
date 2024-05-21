@@ -5,7 +5,7 @@ const Card = ({ icon, amount, label, plan, delt, deltValue, chart }) => {
   return (
     <li className="card-wrapper">
       <div className="card-first-column">
-        <i>{icon}</i>
+        {icon}
         <p className="card-amount">{amount}</p>
         <p className="card-label">{label}</p>
       </div>

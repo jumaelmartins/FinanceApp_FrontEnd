@@ -7,6 +7,7 @@
   border-radius: 2rem;
   padding: 2rem;
   width: 100%;
+  max-width: 100%;
   height: 20rem;
   .card-first-column {
     display: flex;
@@ -15,6 +16,11 @@
     width: 50%;
     gap: 1rem;
     position: relative;
+  }
+  .card-first-column > svg {
+    max-width: 100%;
+    align-self: flex-start;
+    justify-self: flex-start;
   }
   .card-first-column::after {
     content: "";
@@ -26,16 +32,23 @@
     right: -0.8rem;
   }
   .card-first-column > .card-amount {
+    max-width: 100%;
+    display: flex;
+    overflow: hidden;
     font-size: 3rem;
     font-weight: 500;
     letter-spacing: 0.3rem;
     color: map-get(variables.$primary-colors, purple-5);
+    display: flex;
   }
   .card-first-column > .card-label {
     font-size: 1.8rem;
     font-weight: 500;
     letter-spacing: 0.12rem;
     color: map-get(variables.$primary-colors, purple-13);
+    max-width: 100%;
+    display: flex;
+    overflow: hidden;
   }
 
   .card-second-column {
@@ -45,11 +58,15 @@
     width: 50%;
     padding-left: 2rem;
     gap: 1rem;
-    > * p {
+    > *,
+    p {
       font-size: 1.2rem;
       color: map-get(variables.$primary-colors, purple-13);
       font-weight: 500;
       letter-spacing: 0.12rem;
+    }
+    > * {
+      max-width: 100%;
     }
   }
 }
@@ -115,15 +132,18 @@
   height: 0.2rem;
   background: cyan;
 }
-.chart-container--column {
-  width: 100%;
-  max-width: 10rem; /* ajuste conforme necessário */
-  height: auto;
-  margin: 0 auto;
-}
-
-// .chart {
-//   display: flex;
+// .chart-container--column {
 //   width: 100%;
+//   max-width: 10rem; /* ajuste conforme necessário */
 //   height: auto;
+//   margin: 0 auto;
 // }
+
+.chart-container--line--2 {
+  width: inherit;
+  height: 100%;
+}
+.chart {
+  max-width: 80%;
+  height: 8rem;
+}

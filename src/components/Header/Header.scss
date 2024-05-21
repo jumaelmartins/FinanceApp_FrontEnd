@@ -23,6 +23,7 @@
       @media screen and (max-width: 768px) {
         width: 64px;
         height: 64px;
+        max-width: 100%;
       }
       width: 128px;
       max-width: 100%;
@@ -55,10 +56,16 @@
   justify-content: space-between;
   padding: 0 8rem;
   z-index: 2;
+  .logo > svg {
+    max-width: 100%;
+  }
 }
 
 .user-info {
   display: flex;
   align-items: center;
   gap: 1rem;
+  .user-info > svg {
+    max-width: 100%;
+  }
 }

@@ -8,8 +8,9 @@ const LineChart = () => {
 
   useEffect(() => {
     const handleResize = () => {
+      const width = window.innerWidth;
+      setChartWidth(width / 1.7);
       if (chartRef.current) {
-        setChartWidth(chartRef.current.offsetWidth);
         setChartHeight(chartRef.current.offsetHeight);
       }
     };
@@ -28,15 +29,15 @@ const LineChart = () => {
     chart: {
       type: "line",
     },
-    title: {
-      text: "Resultado Diário",
-      align: "center",
-      style: {
-        fontSize: "20px",
-        fontWeight: "bold",
-        color: "#263238",
-      },
-    },
+    // title: {
+    //   text: "Resultado Diário",
+    //   align: "center",
+    //   style: {
+    //     fontSize: "20px",
+    //     fontWeight: "bold",
+    //     color: "#263238",
+    //   },
+    // },
     xaxis: {
       categories: [
         "01",
@@ -75,11 +76,11 @@ const LineChart = () => {
         text: "Dias do Mês",
       },
     },
-    yaxis: {
-      title: {
-        text: "Valores",
-      },
-    },
+    // yaxis: {
+    //   title: {
+    //     text: "Valores",
+    //   },
+    // },
     legend: {
       position: "bottom",
     },
@@ -91,41 +92,27 @@ const LineChart = () => {
       borderColor: "#e0e0e0",
       strokeDashArray: 4,
     },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: "100%",
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
-      },
-    ],
-    colors: ["#008FFB"], // Cor da linha
+    colors: ["#461067"], // Cor da linha
   };
 
   const series = [
     {
       name: "Valor",
       data: [
-        30, 40, 35, 50, 40, 0, 70, 91, 30, 100, 99, 120, 130, 10, 100, 87,
-        30, 60, 10, 20, 80, 20, 10, 24, 0, 0, 70, 20, 100, 50,
-        0,
+        30, 40, 35, 50, 40, 0, 70, 91, 30, 100, 99, 120, 130, 10, 100, 87, 30,
+        60, 10, 20, 80, 20, 10, 24, 0, 0, 70, 20, 100, 50, 0,
       ],
     },
   ];
 
   return (
-    <div className="chart-container--line" ref={chartRef}>
+    <div className="chart-container-line" ref={chartRef}>
+      <h2>Despesas por Dia</h2>
       <Chart
         options={options}
         series={series}
+        height={"100%"}
         type="line"
-        height={chartHeight}
-        width={chartWidth}
       />
     </div>
   );

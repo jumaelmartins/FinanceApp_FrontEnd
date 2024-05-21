@@ -79,7 +79,7 @@ const LineChart2 = () => {
 
   const series = [
     {
-      name: "Amount",
+      name: "",
       data: [10, 35, 80, 20, 40],
     },
   ];
@@ -88,9 +88,8 @@ const LineChart2 = () => {
       <Chart
         options={options}
         series={series}
+        height={"100%"}
         type="line"
-        // height={chartHeight}
-        width={chartWidth}
       />
     </div>
   );
