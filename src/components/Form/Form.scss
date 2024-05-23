@@ -1,5 +1,4 @@
 .form {
-
   padding: 0 4rem;
   width: 100%;
   max-width: 50rem;
@@ -15,4 +14,10 @@
   gap: 1.5rem;
   outline: none;
   border: none;
+}
+
+.error-msg {
+  color: #c71d0e;
+  font-size: 1.2rem;
+  font-weight: bold;
 }

@@ -14,8 +14,8 @@ import CashFlow from "../../components/Icons/CashFlow";
 
 const Dashboard = () => {
   return (
-    <div className="dashboard-container">
-      <Header Modifier={"header--dashboard"} isLogged={true} />
+    <div className="wrapper">
+      <Header Modifier={"header--logged"} isLogged={true} />
       <Navbar />
       <div className="dashboard-wrapper">
         <div className="dashboard-first-row">

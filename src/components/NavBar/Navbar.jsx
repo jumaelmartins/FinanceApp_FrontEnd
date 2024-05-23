@@ -41,7 +41,7 @@ const Navbar = () => {
           <Link>Planning</Link>
         </li>
         <li>
-          <Link>Settings</Link>
+          <Link>Lançamentos</Link>
         </li>
         <li>
           <Link>Ajustes</Link>

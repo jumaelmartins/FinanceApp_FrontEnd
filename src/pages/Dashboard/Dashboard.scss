@@ -1,18 +1,21 @@
 @use "../../styles/partials/variables";
 
-.dashboard-container {
+.wrapper {
   display: flex;
   gap: 1rem;
   background-color: map-get(variables.$secundary-colors, gray-1);
   width: 100%;
+  min-height: 100%;
 }
 
 .dashboard-wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   gap: 1rem;
   width: 100%;
   padding-right: 1rem;
+  padding-bottom: 2.5rem;
 }
 
 .dashboard-first-row {
@@ -41,7 +44,7 @@
   border-radius: 2rem;
   gap: 1rem;
   display: grid;
-  grid-template-columns: minmax(10rem, 30rem);
+  grid-template-columns: minmax(15rem, 30rem);
   text-align: center;
   grid-area: dChart;
   align-items: center;
@@ -66,7 +69,7 @@
 .chart-container--column-one {
   height: 28rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .chart-container--column-two {
@@ -80,7 +83,7 @@
   border-radius: 2rem;
   display: grid;
   gap: 2rem;
-  grid-template-columns: minmax(10rem, 30rem);
+  grid-template-columns: minmax(15rem, 30rem);
 }
 
 .chart-container-bar {
@@ -89,6 +92,7 @@
 }
 .chart-container-line {
   height: 28rem;
+  padding: 2rem;
 }
 .card-container {
   display: grid;
