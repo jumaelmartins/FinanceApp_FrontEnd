@@ -74,3 +74,6 @@
   transition: all 1s;
   animation: bounce 5s ease-in-out infinite alternate;
 }
+.btn:disabled {
+  cursor: wait;
+}

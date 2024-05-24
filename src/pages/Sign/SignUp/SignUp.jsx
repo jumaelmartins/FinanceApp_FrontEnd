@@ -40,6 +40,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="form" action="">
             <fieldset className="form-container">
               <Input
+                type={"text"}
                 errors={errors.username?.message}
                 register={register}
                 placeholder={"username"}
@@ -47,6 +48,7 @@ const SignUp = () => {
                 icon={<Username />}
               />
               <Input
+                type={"email"}
                 errors={errors.email?.message}
                 register={register}
                 placeholder={"email"}
@@ -54,6 +56,7 @@ const SignUp = () => {
                 icon={<Email />}
               />
               <Input
+                type={"password"}
                 errors={errors.password?.message}
                 register={register}
                 placeholder={"password"}

@@ -8,8 +8,16 @@ import Lock from "../../../components/Icons/Lock";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import React from "react";
+import { UserContext } from "../../../context/UserContext";
+import Error from "../../../components/Form/Error/Error";
+import { Navigate } from "react-router-dom";
 
 const SignIn = () => {
+  const { userLogin, error, loading, login } = React.useContext(UserContext);
+
+  if (login === true) return <Navigate to={"/"} />;
+
   const schema = yup
     .object({
       email: yup
@@ -27,7 +35,10 @@ const SignIn = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    userLogin(data);
+  };
 
   return (
     <>
@@ -54,6 +65,7 @@ const SignIn = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="form" action="">
             <fieldset className="form-container">
               <Input
+                type={"email"}
                 register={register}
                 placeholder={"email"}
                 id={"email"}
@@ -61,6 +73,7 @@ const SignIn = () => {
                 errors={errors.email?.message}
               />
               <Input
+                type={"password"}
                 errors={errors.password?.message}
                 register={register}
                 placeholder={"password"}
@@ -68,11 +81,21 @@ const SignIn = () => {
                 icon={<Lock />}
               />
             </fieldset>
-            <Button
-              isFormBtn={true}
-              modifier={"btn--primary btn--small btn--animation-one"}
-              text={"Sign Up"}
-            />
+            {loading ? (
+              <Button
+                isFormBtn={true}
+                modifier={"btn--primary btn--small btn--animation-one"}
+                text={"Carregando"}
+                disabled={true}
+              />
+            ) : (
+              <Button
+                isFormBtn={true}
+                modifier={"btn--primary btn--small btn--animation-one"}
+                text={"Sign Up"}
+              />
+            )}
+            {error && <Error>{error}</Error>}
           </form>
         </section>
       </div>

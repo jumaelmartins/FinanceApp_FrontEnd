@@ -6,9 +6,11 @@ import Post from "../Icons/Post";
 import Planning from "../Icons/Planning";
 import ManageAccount from "../Icons/ManageAccount";
 import Logout from "../Icons/Logout";
+import { UserContext } from "../../context/UserContext";
 
 const Navbar = () => {
   const [menu, setMenu] = React.useState(false);
+  const { userLogout } = React.useContext(UserContext);
 
   return (
     <nav className="nav-container">
@@ -29,7 +31,7 @@ const Navbar = () => {
         <li>
           <ManageAccount />
         </li>
-        <li>
+        <li onClick={userLogout}>
           <Logout />
         </li>
       </ul>
@@ -46,7 +48,7 @@ const Navbar = () => {
         <li>
           <Link>Ajustes</Link>
         </li>
-        <li>
+        <li onClick={userLogout}>
           <Link>Sair</Link>
         </li>
       </ul>
