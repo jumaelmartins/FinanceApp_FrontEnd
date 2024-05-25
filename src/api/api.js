@@ -1,4 +1,4 @@
-const base_url = "http://localhost:3065";
+const base_url = "/api";
 
 export class Api {
   static Session(body) {
@@ -34,6 +34,19 @@ export class Api {
         headers: {
           Authorization: "Bearer " + session.token,
         },
+      },
+    };
+  }
+
+  static CreateUser(body) {
+    return {
+      url: base_url + "/user",
+      options: {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       },
     };
   }

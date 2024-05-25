@@ -10,8 +10,16 @@ import "../../../components/Form/Form.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import useFetch from "../../../hooks/useFetch";
+import { Api } from "../../../api/api";
+import { UserContext } from "../../../context/UserContext";
+import Error from "../../../components/Form/Error/Error";
+import React from "react";
 
 const SignUp = () => {
+  const { loading, error, request } = useFetch();
+  const { userLogin } = React.useContext(UserContext);
+
   const schema = yup
     .object({
       username: yup.string().required("Campo Username é Obrigatorio"),
@@ -30,7 +38,13 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const { response } = await request(
+      Api.CreateUser(data).url,
+      Api.CreateUser(data).options
+    );
+    if (response.ok) userLogin(data);
+  };
 
   return (
     <>
@@ -64,12 +78,21 @@ const SignUp = () => {
                 icon={<Lock />}
               />
             </fieldset>
-
-            <Button
-              isFormBtn={true}
-              modifier={"btn--primary btn--small btn--animation-one"}
-              text={"Sign In"}
-            />
+            {loading ? (
+              <Button
+                disabled={true}
+                isFormBtn={true}
+                modifier={"btn--primary btn--small btn--animation-one"}
+                text={"Cadastrando .."}
+              />
+            ) : (
+              <Button
+                isFormBtn={true}
+                modifier={"btn--primary btn--small btn--animation-one"}
+                text={"Sign In"}
+              />
+            )}
+            {error && <Error>{error}</Error>}
           </form>
         </section>
         <section className="sign-up-column-two">
