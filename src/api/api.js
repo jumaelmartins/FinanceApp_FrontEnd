@@ -1,4 +1,5 @@
 const base_url = "/api";
+// const base_url = "http://localhost:3065";
 
 export class Api {
   static Session(body) {
@@ -28,7 +29,7 @@ export class Api {
 
   static GetUser(session) {
     return {
-      url: base_url + `/user?id=${session.user.id}`,
+      url: base_url + `/user/${session.user.id}`,
       options: {
         method: "GET",
         headers: {

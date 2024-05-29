@@ -1,16 +1,17 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./styles/main.scss";
-import Dashboard from "./pages/Dashboard/Dashboard";
 import Sign from "./pages/Sign/Sign";
 import { UserStorage } from "./context/UserContext";
+import User from "./pages/User/User";
 
 function App() {
   return (
     <BrowserRouter>
       <UserStorage>
         <Routes>
+          <Route path="/" element={<Navigate to={"/account/dashboard"} />} />
           <Route path="/sign/*" element={<Sign />} />
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/account/*" element={<User />} />
         </Routes>
       </UserStorage>
     </BrowserRouter>

@@ -14,7 +14,7 @@ const useFetch = () => {
       setLoading(true);
       response = await fetch(url, options);
       json = await response.json();
-      if (!response.ok) throw new Error(json.errors);
+      if (!response.ok) throw new Error("Error");
       setData(json);
     } catch (err) {
       json = null;

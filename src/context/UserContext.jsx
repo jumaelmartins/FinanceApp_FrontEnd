@@ -21,9 +21,9 @@ export const UserStorage = ({ children }) => {
         throw new Error(`Error: usuario ou senha incorretos`);
       const json = await response.json();
       window.localStorage.setItem("session", JSON.stringify(json));
-      await getUser(json);
+      // await getUser(json);
       setLogin(true);
-      navigate("/");
+      navigate("/account/dashboard");
     } catch (err) {
       setError(err.message);
       setLogin(false);
@@ -48,6 +48,7 @@ export const UserStorage = ({ children }) => {
     const json = await response.json();
     setData(json);
   };
+
   React.useEffect(() => {
     const autoLogin = async () => {
       const session = window.localStorage.getItem("session");
@@ -60,7 +61,7 @@ export const UserStorage = ({ children }) => {
           if (!response.ok) throw new Error(`Error: ${response.statusText}`);
           await getUser(JSON.parse(session));
           setLogin(true);
-          navigate("/");
+          navigate("/account/dashboard");
         } catch (err) {
           setError(err.message);
           userLogout();
@@ -69,9 +70,11 @@ export const UserStorage = ({ children }) => {
         } finally {
           setLoading(false);
         }
+      } else {
+        setLogin(false);
       }
     };
-    autoLogin();
+    login !== true ? autoLogin() : "";
   }, [userLogout]);
 
   return (

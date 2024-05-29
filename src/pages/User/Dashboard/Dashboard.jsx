@@ -1,21 +1,21 @@
 import React from "react";
-import Navbar from "../../components/NavBar/Navbar";
-import Header from "../../components/Header/Header";
+import Navbar from "../../../components/NavBar/Navbar";
+import Header from "../../../components/Header/Header";
 import "./Dashboard.scss";
 import DonutChart from "./Charts/DonutChart";
 import ColumnChart from "./Charts/ColumnChart";
 import BarChart from "./Charts/BarChart";
 import LineChart from "./Charts/LineChart";
 import LineChart2 from "./Charts/LineChart-2";
-import Card from "../../components/Card/Card";
-import Expense from "../../components/Icons/Expense";
-import Income from "../../components/Icons/Income";
-import CashFlow from "../../components/Icons/CashFlow";
+import Card from "../../../components/Card/Card";
+import Expense from "../../../components/Icons/Expense";
+import Income from "../../../components/Icons/Income";
+import CashFlow from "../../../components/Icons/CashFlow";
 
 const Dashboard = () => {
   return (
     <div className="wrapper">
-      <Header Modifier={"header--logged"} />
+      <Header />
       <Navbar />
       <div className="dashboard-wrapper">
         <div className="dashboard-first-row">

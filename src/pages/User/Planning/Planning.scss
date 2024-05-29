@@ -1,0 +1,25 @@
+.planning-container {
+    display: flex;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.planning-group {
+    background: #fff;
+    min-width: 90rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: .2rem .2rem 1rem .2rem lightgray;
+}
+
+.planning {
+    border: 1px solid gray;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 7rem 2rem;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Navbar.scss";
 import Dashboard from "../Icons/Dashboard";
 import Post from "../Icons/Post";
@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext";
 const Navbar = () => {
   const [menu, setMenu] = React.useState(false);
   const { userLogout } = React.useContext(UserContext);
+
 
   return (
     <nav className="nav-container">
@@ -36,17 +37,17 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className={`menu-list${menu ? " activeMenu" : ""}`}>
-        <li className="activeItem">
-          <Link>Dashboard</Link>
+        <li  className="activeItem">
+          <Link to={"/account/dashboard"} >Dashboard</Link>
         </li>
-        <li>
-          <Link>Planning</Link>
+        <li >
+          <Link to={"/account/planning"}>Planning</Link>
         </li>
-        <li>
-          <Link>Lançamentos</Link>
+        <li >
+          <Link to={"/account/planning"} >Lançamentos</Link>
         </li>
-        <li>
-          <Link>Ajustes</Link>
+        <li >
+          <Link to={"/account/settings"} >Ajustes</Link>
         </li>
         <li onClick={userLogout}>
           <Link>Sair</Link>
