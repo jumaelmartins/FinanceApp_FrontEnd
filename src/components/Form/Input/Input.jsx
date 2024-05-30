@@ -2,7 +2,7 @@ import Error from "../Error/Error";
 import "./Input.scss";
 import React from "react";
 
-export const Input = ({ placeholder, id, icon, register, errors,type }) => {
+export const Input = ({ placeholder, id, icon, register, errors, type, modifier }) => {
   return (
     <>
       <label className="label" htmlFor={id}>
@@ -12,7 +12,7 @@ export const Input = ({ placeholder, id, icon, register, errors,type }) => {
           autoComplete="off"
           {...register(id)}
           placeholder={placeholder}
-          className="ipnt"
+          className={`ipnt${modifier ? modifier : ""}`}
           type={type}
         />
       </label>

@@ -32,3 +32,7 @@
     0 0 0.8rem map-get(variables.$primary-colors, purple-2),
     0 0 1.2rem map-get(variables.$primary-colors, purple-3);
 }
+
+.ipnt:focus.ipnt--search {
+  box-shadow: none;
+}
