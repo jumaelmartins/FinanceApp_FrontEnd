@@ -8,7 +8,6 @@ import ProfilePicture from "../../assets/imgs/Profile-Picture.png";
 const Header = ({ Modifier }) => {
   const { login, data } = React.useContext(UserContext);
   const Picture = true;
-
   return (
     <header
       className={

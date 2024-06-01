@@ -1,8 +1,9 @@
 import React from "react";
+import "./PlanningFooter.scss";
 
 const PlanningFooter = () => {
   return (
-    <footer>
+    <footer className="planning-footer">
       <button>Prev</button>
       <ul>
         <li>

@@ -46,16 +46,9 @@
   border-radius: 1rem;
 }
 
-.active::after {
-  rotate: (90deg);
-  width: 0.4rem;
-  height: 0.4rem;
-  left: 1.85rem;
-}
-
 .menu-btn:focus,
 .menu-btn:hover,
-.active {
+.menu-btn--active {
   outline: none;
   background: map-get(variables.$primary-colors, purple-13);
   box-shadow: 0 0 0 0.4rem map-get(variables.$primary-colors, purple-10);
@@ -75,22 +68,31 @@
   > li {
     display: flex;
     align-items: center;
-    padding: 1rem;
-    cursor: pointer;
   }
   > li > a {
+    cursor: pointer;
     color: white;
     font-size: 2rem;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
   }
 }
 .menu-icons-list {
-  margin-top: 12.5rem;
+  margin-top: 12.7rem;
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 3.3rem;
   z-index: 2;
-  > li {
+  > li > a {
+    display: flex;
     cursor: pointer;
+    height: 100%;
+    width: 100%;
+    &.active {
+      border-bottom: .4rem solid map-get(variables.$primary-colors, purple-10 );
+      // margin-left: -.2rem;
+    }
   }
 }
 
@@ -108,17 +110,15 @@
   }
 }
 
-.menu-list .activeItem {
+.menu-list > li > a.active {
   background: map-get(variables.$secundary-colors, gray-1);
   border-top-left-radius: 10rem;
   border-bottom-left-radius: 10rem;
   position: relative;
-  > a {
-    color: black;
-  }
+  color: black;
 }
 
-.menu-list .activeItem::before {
+.menu-list > li > a.active::before {
   content: "";
   position: absolute;
   height: 3rem;
@@ -131,7 +131,7 @@
   z-index: 2;
 }
 
-.menu-list .activeItem::after {
+.menu-list > li > a.active::after {
   content: "";
   position: absolute;
   height: 3rem;

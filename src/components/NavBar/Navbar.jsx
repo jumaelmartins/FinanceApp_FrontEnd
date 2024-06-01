@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import Dashboard from "../Icons/Dashboard";
 import Post from "../Icons/Post";
@@ -12,45 +12,52 @@ const Navbar = () => {
   const [menu, setMenu] = React.useState(false);
   const { userLogout } = React.useContext(UserContext);
 
-
   return (
     <nav className="nav-container">
       <button
-        className={`menu-btn${menu ? " active" : ""}`}
+        className={`menu-btn${menu ? " menu-btn--active" : ""}`}
         onClick={() => setMenu(!menu)}
       ></button>
       <ul className="menu-icons-list">
         <li>
-          <Dashboard />
+          <NavLink to={"/account/dashboard"}>
+            <Dashboard />
+          </NavLink>
         </li>
         <li>
-          <Planning />
+          <NavLink to={"/account/planning"}>
+            <Planning />
+          </NavLink>
         </li>
         <li>
-          <Post />
+          <NavLink to={"/account/lancamentos"}>
+            <Post />
+          </NavLink>
         </li>
         <li>
-          <ManageAccount />
+          <NavLink to={"/account/settings"}>
+            <ManageAccount />
+          </NavLink>
         </li>
         <li onClick={userLogout}>
           <Logout />
         </li>
       </ul>
       <ul className={`menu-list${menu ? " activeMenu" : ""}`}>
-        <li  className="activeItem">
-          <Link to={"/account/dashboard"} >Dashboard</Link>
+        <li>
+          <NavLink to={"/account/dashboard"}>Dashboard</NavLink>
         </li>
-        <li >
-          <Link to={"/account/planning"}>Planning</Link>
+        <li>
+          <NavLink to={"/account/planning"}>Planning</NavLink>
         </li>
-        <li >
-          <Link to={"/account/planning"} >Lançamentos</Link>
+        <li>
+          <NavLink to={"/account/lancamentos"}>Lançamentos</NavLink>
         </li>
-        <li >
-          <Link to={"/account/settings"} >Ajustes</Link>
+        <li>
+          <NavLink to={"/account/settings"}>Ajustes</NavLink>
         </li>
         <li onClick={userLogout}>
-          <Link>Sair</Link>
+          <a>Sair</a>
         </li>
       </ul>
     </nav>

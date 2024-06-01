@@ -1,0 +1,29 @@
+.planning-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 2rem;
+  gap: 2rem;
+  button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  > ul {
+    display: flex;
+    gap: 1rem;
+  }
+  > ul > li > span {
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: purple;
+    cursor: pointer;
+    &:hover {
+      background: gray;
+      color: black;
+    }
+  }
+}

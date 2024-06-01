@@ -21,7 +21,7 @@ export const UserStorage = ({ children }) => {
         throw new Error(`Error: usuario ou senha incorretos`);
       const json = await response.json();
       window.localStorage.setItem("session", JSON.stringify(json));
-      // await getUser(json);
+      await getUser(json);
       setLogin(true);
       navigate("/account/dashboard");
     } catch (err) {

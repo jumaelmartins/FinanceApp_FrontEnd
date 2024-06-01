@@ -1,5 +1,5 @@
-const base_url = "/api";
-// const base_url = "http://localhost:3065";
+// const base_url = "/api";
+const base_url = "http://localhost:3065";
 
 export class Api {
   static Session(body) {
