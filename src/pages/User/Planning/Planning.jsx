@@ -8,11 +8,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Expense from "./Expense/Expense";
 import Category from "./Category/Category";
 const Planning = () => {
-
-
   return (
     <>
-      
       <div className="wrapper">
         <Header />
         <Navbar />

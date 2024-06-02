@@ -1,62 +1,36 @@
 import React from "react";
 import PlanningFooter from "../Footer/PlanningFooter";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Input } from "../../../../components/Form/Input/Input";
-import Search from "../../../../components/Icons/Search";
 import AddItem from "../../../../components/Icons/AddItem";
 import EditItem from "../../../../components/Icons/EditItem";
 import DeleteItem from "../../../../components/Icons/DeleteItem";
-import { Modal } from "../../../../components/Modal/Modal";
+import FormModal from "../../../../components/FormModal/FormModal";
 
 const Income = () => {
-  const schema = yup
-    .object({
-      search: yup.string(),
-    })
-    .required();
+  const [data, setData] = React.useState([]);
+  const [showFormModal, setShowFormModal] = React.useState(false);
+  const [showConfirmModal, setShowConfirmModal] = React.useState(false);
+  const [currentData, setCurrentData] = React.useState(null);
+  const [isEditing, setIsEditing] = React.useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const onSubmit = async (data) => {
-    console.log(data.search);
+  const handleAdd = () => {
+    setIsEditing(false);
+    setCurrentData(null);
+    setShowFormModal(true);
+    console.log("teste")
   };
-  const [showModal, setShowModal] = React.useState(false);
-
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
 
   return (
     <>
-      <Modal show={showModal} onClose={closeModal}>
-        <h2>Incluir Planehamento</h2>
-        <form>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-        </form>
-      </Modal>
+      <FormModal show={showFormModal} onClose={() => setShowFormModal(false)}>
+        <input type="text" />
+        <input type="text" />
+        <input type="text" />
+      </FormModal>
       <div className="planning">
         <header className="">
           <h2>Planned Incomes</h2>
-          <form onSubmit={handleSubmit(onSubmit)} action="">
-            <Input
-              errors={errors.password?.message}
-              id={"search"}
-              register={register}
-              placeholder={"search"}
-              type={"search"}
-              icon={<Search />}
-              modifier={" ipnt--search"}
-            />
-          </form>
-          <i onClick={openModal}>
+          <form action=""></form>
+          <i onClick={handleAdd}>
             <AddItem />
           </i>
         </header>

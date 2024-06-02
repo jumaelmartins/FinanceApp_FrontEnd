@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.scss";
 
-export const Modal = ({ show, onClose, children }) => {
+const Modal = ({ show, onClose, children }) => {
   if (!show) {
     return null;
   }
@@ -16,3 +16,5 @@ export const Modal = ({ show, onClose, children }) => {
     </div>
   );
 };
+
+export default Modal;

@@ -4,7 +4,6 @@ import Sign from "./pages/Sign/Sign";
 import { UserStorage } from "./context/UserContext";
 import ProtectedRouter from "./helper/ProtectedRouter";
 import Account from "./pages/User/Account";
-import { Modal } from "./components/Modal/Modal";
 
 function App() {
   return (

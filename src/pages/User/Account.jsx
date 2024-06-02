@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import Planning from "./Planning/Planning";
 import Settings from "./Settings/Settings";
 import Lancamentos from "./Lancamentos/Lancamentos";
-import { Modal } from "../../components/Modal/Modal";
+
 
 const Account = () => {
   return (
