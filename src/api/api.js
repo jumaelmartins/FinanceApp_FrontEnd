@@ -51,4 +51,42 @@ export class Api {
       },
     };
   }
+
+  static GetIncomeCategory(session) {
+    return {
+      url: base_url + "/income-category",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  static GetIncomePlanning(session) {
+    return {
+      url: base_url + "/income-planning",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  static async CreateIncomePlanning(session, body) {
+    return {
+      url: base_url + "/income-planning/",
+      options: {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
+        body: JSON.stringify(await body),
+      },
+    };
+  }
 }

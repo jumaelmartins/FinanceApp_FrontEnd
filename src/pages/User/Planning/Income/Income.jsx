@@ -1,30 +1,103 @@
 import React from "react";
 import PlanningFooter from "../Footer/PlanningFooter";
 import AddItem from "../../../../components/Icons/AddItem";
-import EditItem from "../../../../components/Icons/EditItem";
-import DeleteItem from "../../../../components/Icons/DeleteItem";
 import FormModal from "../../../../components/FormModal/FormModal";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { UserContext } from "../../../../context/UserContext";
+import { Input } from "../../../../components/Form/Input/Input";
+import { Api } from "../../../../api/api";
+import useFetch from "../../../../hooks/useFetch";
+import Table from "../../../../components/Table/Table";
 
 const Income = () => {
-  const [data, setData] = React.useState([]);
+  const [incomeCategory, setIncomeCategory] = React.useState([]);
   const [showFormModal, setShowFormModal] = React.useState(false);
   const [showConfirmModal, setShowConfirmModal] = React.useState(false);
   const [currentData, setCurrentData] = React.useState(null);
   const [isEditing, setIsEditing] = React.useState(false);
+  const { schema, session } = React.useContext(UserContext);
+
+  const { request } = useFetch();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema("")),
+  });
+  const onSubmit = async (data) => {
+    const date = new Date(data.month);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    const formatedDate = `${year}-${month}-${day}`;
+    const body = {
+      ...data,
+      category_id: Number(data.category_id),
+      month: formatedDate,
+    };
+
+    const { url, options } = await Api.CreateIncomePlanning(session, body);
+    const { response, json } = await request(url, options);
+    console.log(response);
+  };
 
   const handleAdd = () => {
     setIsEditing(false);
     setCurrentData(null);
     setShowFormModal(true);
-    console.log("teste")
   };
+
+  React.useEffect(() => {
+    const getCategory = async () => {
+      const { url, options } = Api.GetIncomeCategory(session);
+      const { json } = await request(url, options);
+      setIncomeCategory(json);
+    };
+    getCategory();
+  }, []);
 
   return (
     <>
-      <FormModal show={showFormModal} onClose={() => setShowFormModal(false)}>
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
+      <FormModal
+        title={"Incluir Planejamento"}
+        onSubmit={handleSubmit(onSubmit)}
+        show={showFormModal}
+        onClose={() => setShowFormModal(false)}
+      >
+        <fieldset>
+          <label htmlFor="category">Categoria</label>
+          <select {...register("category_id")} name="category">
+            {incomeCategory.map((category) => {
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.category_name}
+                </option>
+              );
+            })}
+          </select>
+          <Input
+            formType={"addEdit"}
+            type={"month"}
+            errors={errors.date?.message}
+            register={register}
+            placeholder={"month"}
+            id={"month"}
+            icon={""}
+          />
+          <Input
+            formType={"addEdit"}
+            type={"text"}
+            errors={errors.planned_amount?.message}
+            register={register}
+            placeholder={"planned_amount"}
+            id={"planned_amount"}
+            icon={""}
+          />
+        </fieldset>
       </FormModal>
       <div className="planning">
         <header className="">
@@ -35,41 +108,7 @@ const Income = () => {
           </i>
         </header>
         <section>
-          <table>
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Category</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 5 }).map((_, i) => {
-                return (
-                  <tr key={i}>
-                    <td>Income</td>
-                    <td>Wage</td>
-                    <td>1{i}-08-2024</td>
-                    <td>R$30{i}</td>
-                    <td>
-                      <button type="button">
-                        <i>
-                          <EditItem />
-                        </i>
-                      </button>
-                      <button type="button">
-                        <i>
-                          <DeleteItem />
-                        </i>
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <Table apiMethod={Api.GetIncomePlanning(session)} />
           <PlanningFooter />
         </section>
       </div>

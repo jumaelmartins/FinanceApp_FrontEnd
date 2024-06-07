@@ -26,13 +26,13 @@
     font-size: 1.8rem;
     padding: 0 6rem;
   }
-}
-.ipnt:focus {
-  box-shadow: 0 0 0.4rem map-get(variables.$primary-colors, purple-1),
-    0 0 0.8rem map-get(variables.$primary-colors, purple-2),
-    0 0 1.2rem map-get(variables.$primary-colors, purple-3);
-}
+  .ipnt:focus {
+    box-shadow: 0 0 0.4rem map-get(variables.$primary-colors, purple-1),
+      0 0 0.8rem map-get(variables.$primary-colors, purple-2),
+      0 0 1.2rem map-get(variables.$primary-colors, purple-3);
+  }
 
-.ipnt:focus.ipnt--search {
-  box-shadow: none;
+  .ipnt:focus.ipnt--search {
+    box-shadow: none;
+  }
 }
