@@ -1,11 +1,15 @@
 import React from "react";
 import "./Modal.scss";
 
-const Modal = ({ show, children, title, onClose }) => {
+const ModalRoot = ({ show, onClose, children, title }) => {
   const dialogRef = React.useRef(null);
 
   React.useEffect(() => {
     const dialog = dialogRef.current;
+
+    const handleClose = () => {
+      onClose();
+    };
 
     if (show) {
       dialog.showModal();
@@ -33,4 +37,4 @@ const Modal = ({ show, children, title, onClose }) => {
   );
 };
 
-export default Modal;
+export default ModalRoot;

@@ -64,6 +64,42 @@ export class Api {
     };
   }
 
+  static GetExpenseCategory(session) {
+    return {
+      url: base_url + "/expense-category",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  static GetPayMethod(session) {
+    return {
+      url: base_url + "/pay-method",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  static GetExpenseTypes(session) {
+    return {
+      url: base_url + "/expense-types",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
   static GetIncomePlanning(session) {
     return {
       url: base_url + "/income-planning",
@@ -86,6 +122,88 @@ export class Api {
           Authorization: "Bearer " + session.token,
         },
         body: JSON.stringify(await body),
+      },
+    };
+  }
+
+  static async UpdateIncomePlanning(session, body, id) {
+    return {
+      url: base_url + "/income-planning/" + id,
+      options: {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
+        body: JSON.stringify(await body),
+      },
+    };
+  }
+
+  static async DeleteIncomePlanning(session, id) {
+    return {
+      url: base_url + "/income-planning/" + id,
+      options: {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  //
+
+  static GetExpensePlanning(session) {
+    return {
+      url: base_url + "/expense-planning",
+      options: {
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + session.token,
+        },
+      },
+    };
+  }
+
+  static async CreateExpensePlanning(session, body) {
+    return {
+      url: base_url + "/expense-planning/",
+      options: {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
+        body: JSON.stringify(await body),
+      },
+    };
+  }
+
+  static async UpdateExpensePlanning(session, body, id) {
+    return {
+      url: base_url + "/expense-planning/" + id,
+      options: {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
+        body: JSON.stringify(await body),
+      },
+    };
+  }
+
+  static async DeleteExpensePlanning(session, id) {
+    return {
+      url: base_url + "/expense-planning/" + id,
+      options: {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session.token,
+        },
       },
     };
   }

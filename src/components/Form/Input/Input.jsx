@@ -1,4 +1,3 @@
-import Error from "../Error/Error";
 import "./Input.scss";
 import React from "react";
 
@@ -7,7 +6,6 @@ export const Input = ({
   id,
   icon,
   register,
-  errors,
   type,
   modifier,
   formType,
@@ -39,7 +37,6 @@ export const Input = ({
           />
         </label>
       )}
-      {errors ? <Error>{errors}</Error> : ""}
     </>
   );
 };

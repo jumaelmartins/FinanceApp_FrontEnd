@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Button.scss";
 
-const Button = ({ modifier, text, to, isFormBtn, disabled, type, onClose }) => {
+const Button = ({ modifier, text, to, isFormBtn, disabled, type, onClick }) => {
   return (
     <>
       {isFormBtn ? (
         <button
-          onClick={onClose}
+          onClick={onClick}
           type={type}
           disabled={disabled}
           to={to}

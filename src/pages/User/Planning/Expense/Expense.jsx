@@ -1,90 +1,244 @@
 import React from "react";
 import PlanningFooter from "../Footer/PlanningFooter";
+import AddItem from "../../../../components/Icons/AddItem";
+import useFetch from "../../../../hooks/useFetch";
+import { Table } from "../../../../components/Table/Index";
+import { Api } from "../../../../api/api";
+import { UserContext } from "../../../../context/UserContext";
+import { Modal } from "../../../../components/Modal/Index";
+import { Input } from "../../../../components/Form/Input/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Input } from "../../../../components/Form/Input/Input";
-import Search from "../../../../components/Icons/Search";
-import AddItem from "../../../../components/Icons/AddItem";
-import EditItem from "../../../../components/Icons/EditItem";
-import DeleteItem from "../../../../components/Icons/DeleteItem";
+import { getDate } from "../../../../helper/getDate";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { formatMonth } from "../../../../helper/formatMonth";
 
 const Expense = () => {
-  const schema = yup
-    .object({
-      search: yup.string(),
-    })
-    .required();
+  const { request } = useFetch();
+  const { session } = React.useContext(UserContext);
+  const [showModal, setShowModal] = React.useState(false);
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [isAdding, setIsAdding] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [category, setCategory] = React.useState([]);
+  const [type, setType] = React.useState([]);
+  const [payMethod, setPayMethod] = React.useState([]);
+  const [id, setId] = React.useState(null);
+  const { schema } = React.useContext(UserContext);
+  const [selectedItem, setSelectedItem] = React.useState({});
+
+  const getData = async () => {
+    const { url, options } = Api.GetExpensePlanning(session);
+    const { json } = await request(url, options);
+    return json;
+  };
+
+  const addItem = async (body) => {
+    const { url, options } = await Api.CreateExpensePlanning(session, body);
+    return await request(url, options);
+  };
+
+  const editItem = async (body) => {
+    const { url, options } = await Api.UpdateExpensePlanning(session, body, id);
+    return await request(url, options);
+  };
+
+  const deleteItem = async () => {
+    const { url, options } = await Api.DeleteExpensePlanning(session, id);
+    return await request(url, options);
+  };
+
+  const queryClient = useQueryClient();
+
+  const { data } = useQuery({
+    queryFn: getData,
+    queryKey: ["expense-planning"],
+  });
+
+  const addMutate = useMutation({
+    mutationFn: addItem,
+    onSuccess: () => queryClient.invalidateQueries(["expense-planning"]),
+  });
+
+  const editMutate = useMutation({
+    mutationFn: editItem,
+    onSuccess: () => queryClient.invalidateQueries(["expense-planning"]),
+  });
+
+  const deleteMutate = useMutation({
+    mutationFn: deleteItem,
+    onSuccess: () => queryClient.invalidateQueries(["expense-planning"]),
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema("")),
   });
-  const onSubmit = async (data) => {
-    console.log(data.search);
+
+  const handleConfirm = () => {
+    deleteMutate.mutate();
+    handleClose();
   };
 
+  const handleEdit = ({ target }) => {
+    setShowModal(true);
+    setIsEditing(true);
+    const itemId = Number(target.closest("tr").id);
+    const itemToEdit = data.find((item) => item.id === itemId);
+    setSelectedItem(itemToEdit);
+    setId(itemId);
+  };
+
+  const handleAdd = () => {
+    setShowModal(true);
+    setIsAdding(true);
+    console.log(data)
+  };
+
+  const handleDelete = ({ target }) => {
+    setShowModal(true);
+    setIsDeleting(true);
+    setId(Number(target.closest("tr").id));
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+    setIsEditing(false);
+    setIsDeleting(false);
+    setIsAdding(false);
+  };
+
+  const onSubmit = async (data) => {
+    const formatedDate = getDate(data.month);
+    const body = {
+      ...data,
+      category_id: Number(data.category_id),
+      month: formatedDate,
+    };
+    if (isAdding) {
+      addMutate.mutate(body);
+    }
+
+    if (isEditing) {
+      editMutate.mutate(body);
+    }
+    handleClose();
+  };
+
+  React.useEffect(() => {
+    const getCategory = async () => {
+      const { url, options } = Api.GetExpenseCategory(session);
+      const { json } = await request(url, options);
+      setCategory(json);
+    };
+    const getType = async () => {
+      const { url, options } = Api.GetExpenseTypes(session);
+      const { json } = await request(url, options);
+      setType(json);
+    };
+    const getPayMethod = async () => {
+      const { url, options } = Api.GetPayMethod(session);
+      const { json } = await request(url, options);
+      console.log(json);
+      setPayMethod(json);
+    };
+
+    getPayMethod();
+    getType();
+    getCategory();
+  }, [session, request]);
+
+  React.useEffect(() => {
+    if (isEditing && selectedItem) {
+      setValue("category_id", selectedItem.category_id);
+      setValue("pay_method_id", selectedItem.pay_method_id);
+      setValue("month", formatMonth(selectedItem.month));
+      setValue("planned_amount", selectedItem.planned_amount);
+    }
+  }, [isEditing, selectedItem, setValue]);
+
   return (
-    <div className="planning">
-      <header className="">
-        <h2>Planned Expenses</h2>
-        <form onSubmit={handleSubmit(onSubmit)} action="">
-          <Input
-            errors={errors.password?.message}
-            id={"search"}
-            register={register}
-            placeholder={"search"}
-            type={"search"}
-            icon={<Search />}
-            modifier={" ipnt--search"}
+    <>
+      <Modal.Root show={showModal} onClose={handleClose}>
+        {(isAdding || isEditing) && (
+          <Modal.Form onClose={handleClose} onSubmit={handleSubmit(onSubmit)}>
+            <fieldset>
+              <label htmlFor="category_id">Categoria</label>
+              <select {...register("category_id")} name="category_id">
+                <option>Selecione</option>
+                {category.map((category) => (
+                  <option
+                    className={category.category_name}
+                    key={category.id}
+                    value={category.id}
+                  >
+                    {category.category_name}
+                  </option>
+                ))}
+              </select>
+
+              <label htmlFor="pay_method_id">Pay Method</label>
+              <select {...register("pay_method_id")} name="pay_method_id">
+                <option>Selecione</option>
+                {payMethod.map((payMethod) => (
+                  <option
+                    className={payMethod.method}
+                    key={payMethod.id}
+                    value={payMethod.id}
+                  >
+                    {payMethod.method}
+                  </option>
+                ))}
+              </select>
+              <Input
+                formType={"addEdit"}
+                register={register}
+                id={"month"}
+                type={"month"}
+              />
+              <Input
+                formType={"addEdit"}
+                register={register}
+                id={"planned_amount"}
+              />
+            </fieldset>
+          </Modal.Form>
+        )}
+        {isDeleting && (
+          <Modal.Confirm onClose={handleClose} onConfirm={handleConfirm} />
+        )}
+      </Modal.Root>
+
+      <div className="planning">
+        <header className="">
+          <h2>Planned Incomes</h2>
+          <form action=""></form>
+        </header>
+        <div onClick={handleAdd}>
+          <button>
+            <i>
+              <AddItem onClick={handleAdd} />
+            </i>
+          </button>
+        </div>
+        <Table.Root>
+          <Table.Head type={"expense"}></Table.Head>
+          <Table.Row
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            data={data}
+            type={"expense"}
           />
-        </form>
-        <i>
-          <AddItem />
-        </i>
-      </header>
-      <section>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: 5 }).map((_, i) => {
-              return (
-                <tr key={i}>
-                  <td>Expense</td>
-                  <td>Wage</td>
-                  <td>1{i}-08-2024</td>
-                  <td>R$30{i}</td>
-                  <td>
-                    <button type="button">
-                      <i>
-                        <EditItem />
-                      </i>
-                    </button>
-                    <button type="button">
-                      <i>
-                        <DeleteItem />
-                      </i>
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <PlanningFooter />
-      </section>
-    </div>
+        </Table.Root>
+        <section>
+          <PlanningFooter />
+        </section>
+      </div>
+    </>
   );
 };
 

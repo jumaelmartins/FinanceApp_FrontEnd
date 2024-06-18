@@ -1,18 +1,16 @@
-// FormAddEdit.js
 import React from "react";
 import Button from "../Form/Button/Button";
-import "./FormAddEdit.scss";
 
-const FormAddEdit = ({ onSubmit, children, onClose }) => {
+const ModalForm = ({ onSubmit, children, onClose }) => {
   return (
     <form method="dialog" onSubmit={onSubmit}>
       {children}
       <Button
+        onClick={onClose}
         type={"reset"}
         isFormBtn={true}
         text={"Cancelar"}
         modifier={"btn--small"}
-        onClick={onClose}
       />
       <Button
         type={"submit"}
@@ -24,4 +22,4 @@ const FormAddEdit = ({ onSubmit, children, onClose }) => {
   );
 };
 
-export default FormAddEdit;
+export default ModalForm;
